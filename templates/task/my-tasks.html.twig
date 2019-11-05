@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mis tareas{% endblock %}
+
+{% block body %}
+
+<h1 class="mb-5">Mis tareas</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th scope="col">Tarea</th>
+    <th scope="col">Prioridad</th>
+    <th scope="col">Horas presupuestadas</th>
+    <th scope="col">Acciones</th>
+  </tr>
+  {% for task in tasks.owner.tasks %}
+    <tr>
+      <td>{{ task.title }}</td>
+      <td class="text-center">{{ task.priority }}</td>
+      <td class="text-center">{{ task.hours }}</td>
+      <td class="text-center">
+        <a class="btn btn-sm btn-primary" href="{{ path('task_detail', {'id':task.id}) }}" role="button">Ver</a>
+        <a class="btn btn-sm btn-success" href="{{ path('task_edit', {'id':task.id}) }}" role="button">Editar</a>
+        <a class="btn btn-sm btn-danger" href="{{ path('task_deletion', {'id':task.id}) }}" role="button">Borrar</a>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+  {% endblock %}
